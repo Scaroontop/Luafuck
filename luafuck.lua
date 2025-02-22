@@ -48,7 +48,23 @@ local function obfuscateLua(code)
     return "loadstring(([==[" .. encoded .. "]==]" .. createLoader()
 end
 
+local function obfuscateLuau(code)
+    -- Use the same obfuscation logic for now
+    local encoded = encode(code)
+    return "loadstring(([==[" .. encoded .. "]==]" .. createLoader()
+end
+
 -- Example usage
 local luaCode = 'print("Hello, World!")'
-local obfuscatedCode = obfuscateLua(luaCode)
-print(obfuscatedCode)
+local obfuscatedLuaCode = obfuscateLua(luaCode)
+print(obfuscatedLuaCode)
+
+local luauCode = 'print("Hello, World!")'
+local obfuscatedLuauCode = obfuscateLuau(luauCode)
+print(obfuscatedLuauCode)
+
+-- Export functions for use in other scripts
+return {
+    obfuscateLua = obfuscateLua,
+    obfuscateLuau = obfuscateLuau
+}
