@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text & Lua Obfuscator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="obfuscator.js" defer></script>
+    <script src="luaObfuscator.js" defer></script>
+    <script src="example.js" defer></script>
+    <meta content="Text & Lua Obfuscator" property="og:title" />
+    <meta content="A way to encode text and Lua code into obfuscated formats." property="og:description" />
+</head>
+<body>
+    <h1>Text & Lua Obfuscator</h1>
+    
+    <div class="section" id="text-obfuscator-section">
+        <h2>Text Obfuscator</h2>
+        <label for="textInput">Enter text to obfuscate:</label>
+        <textarea id="textInput" placeholder="Enter any text here..."></textarea>
+        <button id="textEncode">Obfuscate Text</button>
+        <h3>Obfuscated Code:</h3>
+        <div id="textOutput" class="output"></div>
+    </div>
+    
+    <div class="section" id="lua-obfuscator-section">
+        <h2>Lua Obfuscator</h2>
+        <label for="luaInput">Enter Lua code:</label>
+        <textarea id="luaInput" placeholder="Enter Lua code here..."></textarea>
+        <button id="luaEncode">Obfuscate Lua</button>
+        <h3>Obfuscated Lua Code:</h3>
+        <div id="luaOutput" class="output"></div>
+        <div id="characterAmount" class="stats"></div>
+    </div>
+</body>
+</html>
