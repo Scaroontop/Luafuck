@@ -25,11 +25,16 @@
     </div>
     
     <div class="section" id="lua-obfuscator-section">
-        <h2>Lua Obfuscator</h2>
-        <label for="luaInput">Enter Lua code:</label>
-        <textarea id="luaInput" placeholder="Enter Lua code here..."></textarea>
-        <button id="luaEncode">Obfuscate Lua</button>
-        <h3>Obfuscated Lua Code:</h3>
+        <h2>Lua/Luau Obfuscator</h2>
+        <label for="luaInput">Enter Lua/Luau code:</label>
+        <textarea id="luaInput" placeholder="Enter Lua or Luau code here..."></textarea>
+        <label for="methodSelect">Select Method:</label>
+        <select id="methodSelect">
+            <option value="lua">Lua</option>
+            <option value="luau">Luau</option>
+        </select>
+        <button id="luaEncode">Obfuscate Lua/Luau</button>
+        <h3>Obfuscated Code:</h3>
         <div id="luaOutput" class="output"></div>
         <div id="characterAmount" class="stats"></div>
     </div>
