@@ -4,15 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const luaInput = document.getElementById("luaInput");
   const luaOutput = document.getElementById("luaOutput");
   const luaEncodeButton = document.getElementById("luaEncode");
+  const methodSelect = document.getElementById("methodSelect");
   const characterAmount = document.getElementById("characterAmount");
 
-  if (!luaInput || !luaOutput || !luaEncodeButton) {
+  if (!luaInput || !luaOutput || !luaEncodeButton || !methodSelect) {
     console.error("Required DOM elements for Lua obfuscation not found");
     return;
   }
-  
-  // Create an instance of LuaObfuscator. In a browser, it is attached to window.
-  const obfuscator = new LuaObfuscator();
+
+  // Create instances of Lua and Luau obfuscators.
+  const obfuscators = {
+    lua: new LuaObfuscator(),
+    luau: new LuaObfuscator() // Assuming LuaObfuscator can handle both Lua and Luau for simplicity.
+  };
 
   luaEncodeButton.addEventListener("click", () => {
     luaOutput.classList.remove('error', 'success');
@@ -20,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const inputText = luaInput.value.trim();
       if (!inputText) {
-        throw new Error('Please enter some Lua code to encode');
+        throw new Error('Please enter some Lua or Luau code to encode');
       }
-      const obfuscatedCode = obfuscator.encode(inputText);
+
+      const selectedMethod = methodSelect.value;
+      const obfuscatedCode = obfuscators[selectedMethod].encode(inputText);
       luaOutput.textContent = obfuscatedCode;
       luaOutput.classList.add('success');
       
@@ -32,14 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       luaOutput.textContent = `Error: ${error.message}`;
       luaOutput.classList.add('error');
-      console.error('Lua encoding error:', error);
+      console.error(`${methodSelect.value} encoding error:`, error);
     }
   });
 
   // Example usage logging to console.
   const exampleLuaCode = 'print("Hello, World!")';
   try {
-    const exampleObfuscated = obfuscator.encode(exampleLuaCode);
+    const exampleObfuscated = obfuscators.lua.encode(exampleLuaCode);
     console.log("Obfuscated Lua Code (example):");
     console.log(exampleObfuscated);
   } catch (error) {
